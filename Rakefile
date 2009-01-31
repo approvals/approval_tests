@@ -1,10 +1,6 @@
 require 'rubygems'
-
-require 'rake'
-require 'rake/rdoctask'
 require 'spec/rake/spectask'
-require "rake/gempackagetask"
-require "rake/clean"
+require 'rake/gempackagetask'
 
 desc "Run all specs"
 Spec::Rake::SpecTask.new('specs') do |t|
