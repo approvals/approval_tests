@@ -19,7 +19,7 @@ PROJECT_DESCRIPTION = PROJECT_SUMMARY
 AUTHOR = "Dan Gilkerson and isidore_us"
 EMAIL = "contact@dangilkerson.com"
  
-GEM_NAME = "approvals"
+GEM_NAME = "approval_tests"
 PKG_BUILD = ENV['PKG_BUILD'] ? '.' + ENV['PKG_BUILD'] : ''
 GEM_VERSION = "0.0.1"
  
@@ -66,5 +66,3 @@ task :gemspec do
     file.puts spec.to_ruby
   end
 end
- 
-CLEAN.include ["pkg"]
