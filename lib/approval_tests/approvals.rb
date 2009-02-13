@@ -2,7 +2,8 @@ require 'fileutils'
 __DIR__ = File.dirname(__FILE__)
 require "#{__DIR__}/namers/rspec_namer"
 require "#{__DIR__}/approvers/file_approver"
-require "#{__DIR__}/writers/approval_text_writer"
+require "#{__DIR__}/writers/text_writer"
+require "#{__DIR__}/writers/html_writer"
 require "#{__DIR__}/reporters/quiet_reporter"
 require "#{__DIR__}/reporters/text_mate_reporter"
 
@@ -13,8 +14,13 @@ include ApprovalTests::Reporters
 module ApprovalTests
   class Approvals
     class << self
-      def approve(data)
-        approver = FileApprover.new(ApprovalTextWriter.new(data), @namer)
+      def approve(data, writer_option = :text)
+        case writer_option
+          when :html then writer = HtmlWriter.new(data)
+          when :text then writer = TextWriter.new(data)
+        end
+        
+        approver = FileApprover.new(writer, @namer)
         if approver.approve()
           approver.clean_up_after_success()
         else
