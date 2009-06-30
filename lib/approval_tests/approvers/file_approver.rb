@@ -1,9 +1,4 @@
-module ApprovalTests
-  class ApprovalException < Exception
-    attr_accessor :received_filename
-    attr_accessor :approved_filename
-  end
-end
+
 
 module ApprovalTests
   module Approvers
@@ -20,14 +15,14 @@ module ApprovalTests
   			@received = @writer.write_received_file(@received)
 
   			unless File.exists?(@approved)
-  			  @failure = ApprovalException.new("Failed Approval: Approval File \"#{@approved}\" Not Found.")
+  			  @failure = ApprovalError.new("Failed Approval: Approval File \"#{@approved}\" Not Found.")
   			  @failure.received_filename = @received
   			  @failure.approved_filename = @approved
   				return false
   			end
 
   			unless FileUtils.cmp(@received, @approved)
-  			  @failure = ApprovalException.new("Failed Approval: Received file #{@received} does not match approved file #{@approved}.")
+  			  @failure = ApprovalError.new("Failed Approval: Received file #{@received} does not match approved file #{@approved}.")
   			  @failure.received_filename = @received
   			  @failure.approved_filename = @approved
   				return false

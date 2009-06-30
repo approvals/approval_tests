@@ -6,13 +6,17 @@ require "#{__DIR__}/writers/text_writer"
 require "#{__DIR__}/writers/html_writer"
 require "#{__DIR__}/reporters/quiet_reporter"
 require "#{__DIR__}/reporters/text_mate_reporter"
-require "#{__DIR__}/reporters/html_reporter"
+#require "#{__DIR__}/reporters/html_reporter"
 
 include ApprovalTests::Approvers
 include ApprovalTests::Writers
 include ApprovalTests::Reporters
 
 module ApprovalTests
+  class ApprovalError < Exception
+    attr_accessor :received_filename
+    attr_accessor :approved_filename
+  end
   class Approvals
     class << self
       def approve(data, writer_option = :text)

@@ -44,7 +44,7 @@ Spec::Runner.configure do |config|
     extra_description = ""
     extra_description = "_#{self.description}" if !self.description.empty?
     Approvals.namer.approval_name = "#{self.class.description}#{extra_description}".gsub("/", "__FORWARD_SLASH__");
-    Approvals.namer.source_file_path = File.dirname(self.class.spec_path)
+    Approvals.namer.source_file_path = File.dirname(self.class.location)
   end
   config.extend(ApprovalTests::Extensions::RSpec)
 end

@@ -19,12 +19,12 @@ describe "Approvals" do
   
   it "should raise mismatch error if received does not match approved" do
     Approvals.register_reporter(CleanupReporter.new);
-    lambda { Approvals.approve("should fail with mismatch") }.should raise_error(RuntimeError)
+    lambda { Approvals.approve("should fail with mismatch") }.should raise_error(ApprovalError)
   end
   
   it "should raise missing approval error if has not been approved yet" do
     Approvals.register_reporter(CleanupReporter.new);
-    lambda { Approvals.approve("should fail with a missing exception") }.should raise_error(RuntimeError)
+    lambda { Approvals.approve("should fail with a missing ") }.should raise_error(ApprovalError)
   end  
   
   describe "Multiple describes" do
@@ -39,7 +39,4 @@ describe "Approvals", "using approval blocks" do
     "approve this"
   end
   
-  approve do
-    "approve this"
-  end
 end
