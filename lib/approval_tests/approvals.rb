@@ -6,6 +6,7 @@ require "#{__DIR__}/writers/text_writer"
 require "#{__DIR__}/writers/html_writer"
 require "#{__DIR__}/reporters/quiet_reporter"
 require "#{__DIR__}/reporters/text_mate_reporter"
+require "#{__DIR__}/reporters/diff_reporter"
 #require "#{__DIR__}/reporters/html_reporter"
 
 include ApprovalTests::Approvers

@@ -32,7 +32,17 @@ describe "Approvals" do
       Approvals.approve("multiple describes")
     end
   end
+  
+  describe "DiffReporter" do
+    it "should launch" do
+      base = "approval_tests/spec/"
+      DiffReporter.instance.report("approval_tests/spec/a.txt", "approval_tests/spec/b.txt")    
+    end
+  end
+    
 end
+
+
 
 describe "Approvals", "using approval blocks" do
   approve "the last statement" do
