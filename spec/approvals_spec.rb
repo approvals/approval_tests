@@ -18,12 +18,12 @@ describe "Approvals" do
   end
   
   it "should raise mismatch error if received does not match approved" do
-    Approvals.register_reporter(CleanupReporter.new);
+    Approvals.reporter(CleanupReporter.new);
     lambda { Approvals.approve("should fail with mismatch") }.should raise_error(ApprovalError)
   end
   
   it "should raise missing approval error if has not been approved yet" do
-    Approvals.register_reporter(CleanupReporter.new);
+    Approvals.reporter(CleanupReporter.new);
     lambda { Approvals.approve("should fail with a missing ") }.should raise_error(ApprovalError)
   end  
   
@@ -33,11 +33,29 @@ describe "Approvals" do
     end
   end
   
+  describe "lists" do
+    it "should write arrays" do
+      Approvals.approve_list("name",["tom","dick","harry"])
+    end
+    it "should show empty lists" do
+      Approvals.approve_list("tv", [])
+    end
+    it "should write maps" do
+      Approvals.approve_map(:name=> "harry", :age => 25, :sex => "male")
+    end
+  end
+  
+  
   describe "DiffReporter" do
     it "should launch" do
       base = "approval_tests/spec/"
-      DiffReporter.instance.report("approval_tests/spec/a.txt", "approval_tests/spec/b.txt")    
-    end
+   #   DiffReporter.instance.report("approval_tests/spec/a.txt", "approval_tests/spec/b.txt")    
+   end 
+     it "should create and launch" do
+        base = "approval_tests/spec/"
+        File.delete("#{base}c.txt") if File.exists?("#{base}c.txt")
+   #     DiffReporter.instance.report("#{base}c.txt", "#{base}a.txt")    
+      end
   end
     
 end

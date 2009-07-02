@@ -6,6 +6,7 @@ module ApprovalTests
       include Singleton
 
   		def report(approved, received)
+  		   TextWriter.write_file(approved,"")  unless File.exists?(approved)
         exec "/Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash \"#{received}\" \"#{approved}\""
       end
       

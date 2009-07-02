@@ -20,6 +20,23 @@ module ApprovalTests
   end
   class Approvals
     class << self
+      def approve_list(label, list)
+        
+        i = -1;
+        format = list.map do |m| 
+          i = i+1
+          "#{label}[#{i}] = #{m} \r"
+        end
+        format = "#{label}.count = 0" if list.empty?
+        approve(format.to_s)
+      end
+      def approve_map(map)
+        out = "";
+        map.each do |key,value| 
+          out += "[#{key}] = #{value} \r"
+        end
+        approve(out)
+      end
       def approve(data, writer_option = :text)
         case writer_option
           when :html then writer = HtmlWriter.new(data)
@@ -59,7 +76,7 @@ module ApprovalTests
         end
       end
 
-      def register_reporter(reporter)
+      def reporter(reporter)
         @reporters ||= []
         @reporters.push(reporter);
       end

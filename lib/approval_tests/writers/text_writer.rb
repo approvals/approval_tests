@@ -14,8 +14,11 @@ module ApprovalTests
       end
       
       def write_received_file(received)
-        f = File.new("#{received}", "w+")
-        f.write(@data)
+        TextWriter.write_file(received, @data)
+      end
+      def self.write_file(name, data)
+        f = File.new("#{name}", "w+")
+        f.write(data)
         f.close()
         f.path
       end
