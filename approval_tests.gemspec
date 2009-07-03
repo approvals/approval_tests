@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{approval_tests}
-  s.version = "0.0.5"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Gilkerson, Llewellyn Falco"]
-  s.date = %q{2009-07-02}
+  s.date = %q{2009-07-03}
   s.description = %q{Approval testing library}
   s.email = %q{approvaltests@dangilkerson.com}
   s.extra_rdoc_files = [
@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
     "README",
      "Rakefile",
      "VERSION",
+     "approval_tests.gemspec",
      "lib/approval_tests.rb",
      "lib/approval_tests/approvals.rb",
      "lib/approval_tests/approvers/file_approver.rb",
@@ -46,6 +47,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/approvaltests/approval_tests}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
+  s.rubyforge_project = %q{approvaltests}
   s.rubygems_version = %q{1.3.4}
   s.summary = %q{Approval testing library}
   s.test_files = [
