@@ -45,6 +45,11 @@ describe "Approvals" do
     end
   end
   
+  describe "xml" do
+    it "should be pretty" do
+      Approvals.approve_xml('<?xml version="1.0" encoding="ISO-8859-1"?><data><a><b>Bee</b><c>Sea</c></a></data>')
+    end
+  end
   
   describe "DiffReporter" do
     it "should launch" do

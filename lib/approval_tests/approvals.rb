@@ -4,6 +4,7 @@ require "#{__DIR__}/namers/rspec_namer"
 require "#{__DIR__}/approvers/file_approver"
 require "#{__DIR__}/writers/text_writer"
 require "#{__DIR__}/writers/html_writer"
+require "#{__DIR__}/writers/xml_writer"
 require "#{__DIR__}/reporters/quiet_reporter"
 require "#{__DIR__}/reporters/text_mate_reporter"
 require "#{__DIR__}/reporters/diff_reporter"
@@ -37,25 +38,32 @@ module ApprovalTests
         end
         approve(out)
       end
-      def approve(data, writer_option = :text)
-        case writer_option
-          when :html then writer = HtmlWriter.new(data)
-          when :text then writer = TextWriter.new(data)
-        end
-        
-        approver = FileApprover.new(writer, @namer)
-        if approver.approve()
-          approver.clean_up_after_success()
-        else
-          @reporter = get_default_reporter()
-          approver.report_failure(@reporter)
-
-          if @reporter.approved_when_reported()
-            approver.clean_up_after_sucess()
+      def approve(data)
+        approve_with_writer(TextWriter.new(data))
+      end
+      
+      def approve_html(data)
+        approve_with_writer(HtmlWriter.new(data))
+      end
+      
+      def approve_xml(data)
+        approve_with_writer(TextWriter.new(XmlWriter.pretty_xml(data)))
+      end
+      
+      def approve_with_writer(writer)
+          approver = FileApprover.new(writer, @namer)
+          if approver.approve()
+            approver.clean_up_after_success()
           else
-            approver.fail()
+            @reporter = get_default_reporter()
+            approver.report_failure(@reporter)
+
+            if @reporter.approved_when_reported()
+              approver.clean_up_after_sucess()
+            else
+              approver.fail()
+            end
           end
-        end
       end
       
       def namer=(namer)
