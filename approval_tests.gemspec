@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{approval_tests}
-  s.version = "0.0.4"
+  s.version = "0.0.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Gilkerson, Llewellyn Falco"]
@@ -16,7 +16,6 @@ Gem::Specification.new do |s|
     "README",
      "Rakefile",
      "VERSION",
-     "approval_tests.gemspec",
      "lib/approval_tests.rb",
      "lib/approval_tests/approvals.rb",
      "lib/approval_tests/approvers/file_approver.rb",
@@ -27,13 +26,18 @@ Gem::Specification.new do |s|
      "lib/approval_tests/reporters/text_mate_reporter.rb",
      "lib/approval_tests/writers/html_writer.rb",
      "lib/approval_tests/writers/text_writer.rb",
+     "lib/approval_tests/writers/xml_writer.rb",
      "spec/a.txt",
+     "spec/approvals_lists_should_show_empty_lists.approved.txt",
+     "spec/approvals_lists_should_write_arrays.approved.txt",
+     "spec/approvals_lists_should_write_maps.approved.txt",
      "spec/approvals_multiple_describes_should_approve_multiple_describes.approved.txt",
      "spec/approvals_should_approve_shared_behaviors.approved.txt",
      "spec/approvals_should_successfully_approve_text.approved.txt",
      "spec/approvals_spec.rb",
      "spec/approvals_using_approval_blocks.approved.txt",
      "spec/approvals_using_approval_blocks_the_last_statement.approved.txt",
+     "spec/approvals_xml_should_be_pretty.approved.txt",
      "spec/b.txt",
      "spec/cleanup_reporter.rb",
      "spec/spec.opts",
