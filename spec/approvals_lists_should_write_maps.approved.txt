@@ -1,1 +1,1 @@
-[name] = harry [age] = 25 [sex] = male 
+[age] = 25 [name] = harry [sex] = male 

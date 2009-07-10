@@ -1,6 +1,7 @@
 require 'fileutils'
 __DIR__ = File.dirname(__FILE__)
 require "#{__DIR__}/namers/rspec_namer"
+require "#{__DIR__}/namers/cucumber_namer"
 require "#{__DIR__}/approvers/file_approver"
 require "#{__DIR__}/writers/text_writer"
 require "#{__DIR__}/writers/html_writer"
@@ -32,8 +33,8 @@ module ApprovalTests
       end
       def approve_map(map)
         out = "";
-        map.each do |key,value| 
-          out += "[#{key}] = #{value} \r"
+        map.keys.sort { |a,b| a.to_s <=> b.to_s }.each do |key|
+          out += "[#{key}] = #{map[key]} \r"
         end
         approve(out)
       end
