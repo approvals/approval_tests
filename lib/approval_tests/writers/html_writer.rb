@@ -17,8 +17,10 @@ module ApprovalTests
         f = File.new("#{received}", "w+")
         f.write(@data)
         f.close()
+        system("xmllint --format --html --output #{f.path} #{f.path}") if Utils.program_exists('xmllint')
         f.path
       end
+
     end
   end
 end

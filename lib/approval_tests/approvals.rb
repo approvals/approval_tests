@@ -1,5 +1,6 @@
 require 'fileutils'
 __DIR__ = File.dirname(__FILE__)
+require "#{__DIR__}/utils"
 require "#{__DIR__}/namers/rspec_namer"
 require "#{__DIR__}/namers/cucumber_namer"
 require "#{__DIR__}/approvers/file_approver"
