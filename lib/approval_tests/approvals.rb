@@ -10,7 +10,7 @@ require "#{__DIR__}/writers/xml_writer"
 require "#{__DIR__}/reporters/quiet_reporter"
 require "#{__DIR__}/reporters/text_mate_reporter"
 require "#{__DIR__}/reporters/diff_reporter"
-require "#{__DIR__}/reporters/vim_diff_reporter"
+require "#{__DIR__}/reporters/vimdiff_reporter"
 require "#{__DIR__}/reporters/file_launcher_reporter"
 
 include ApprovalTests::Approvers
