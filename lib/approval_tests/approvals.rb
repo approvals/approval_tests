@@ -79,7 +79,7 @@ module ApprovalTests
     
       def get_default_reporter()
         @reporters ||= []
-        return @reporters.first() unless @reporters.empty?
+        return @reporters.last() unless @reporters.empty?
         if defined? Spec::Mate
           TextMateReporter.instance
         else
