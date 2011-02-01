@@ -79,7 +79,13 @@ module ApprovalTests
     
       def get_default_reporter()
         @reporters ||= []
-        return @reporters.last() unless @reporters.empty?
+        unless @reporters.empty?
+          if @single_use
+            @single_use = false
+            return @reporters.pop
+          end
+          return @reporters.last
+        end
         if defined? Spec::Mate
           TextMateReporter.instance
         else
@@ -88,8 +94,20 @@ module ApprovalTests
       end
 
       def reporter(reporter)
-        @reporters ||= []
+        prepare_reporters
         @reporters.push(reporter);
+      end
+
+      def prepare_reporters
+        @reporters ||= []
+        @reporters.pop if @single_use
+        @single_use = false
+      end
+
+      def single_use_reporter(reporter)
+        prepare_reporters
+        @reporters.push(reporter);
+        @single_use = true
       end
 
       def unregister_reporter(reporter)
