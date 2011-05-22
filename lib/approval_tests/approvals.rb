@@ -13,6 +13,8 @@ require "#{__DIR__}/reporters/diff_reporter"
 require "#{__DIR__}/reporters/vimdiff_reporter"
 require "#{__DIR__}/reporters/opendiff_reporter"
 require "#{__DIR__}/reporters/file_launcher_reporter"
+require "#{__DIR__}/reporters/rspec_reporter"
+require "#{__DIR__}/reporters/tortoisediff_reporter"
 
 include ApprovalTests::Approvers
 include ApprovalTests::Writers
