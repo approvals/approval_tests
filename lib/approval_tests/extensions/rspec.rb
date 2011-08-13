@@ -41,7 +41,7 @@ begin
   RSpec.configure do |config|  
     config.before(:each) do
       Approvals.namer = RSpecNamer.new()
-      Approvals.namer.approval_name = "self.example_group.full_description".gsub("/", "__FORWARD_SLASH__");
+      Approvals.namer.approval_name = self.example.metadata[:full_description].gsub("/", "__FORWARD_SLASH__");
       Approvals.namer.source_file_path = File.dirname(self.class.metadata[:example_group].location)
     end
     config.extend(ApprovalTests::Extensions::RSpec)
