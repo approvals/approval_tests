@@ -46,5 +46,5 @@ begin
     end
     config.extend(ApprovalTests::Extensions::RSpec)
   end
-rescue LoadError 
+rescue NoMethodError 
 end
