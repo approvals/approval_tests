@@ -1,0 +1,1 @@
+Dir[File.dirname(__FILE__) + '/reporters/*.rb'].each {|reporter| require reporter}

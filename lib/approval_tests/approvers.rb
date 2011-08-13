@@ -1,0 +1,1 @@
+Dir[File.dirname(__FILE__) + '/approvers/*.rb'].each {|approver| require approver}

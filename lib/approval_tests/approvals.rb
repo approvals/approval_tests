@@ -1,21 +1,12 @@
 require 'fileutils'
-__DIR__ = File.dirname(__FILE__)
-require "#{__DIR__}/utils"
-require "#{__DIR__}/namers/rspec_namer"
-require "#{__DIR__}/namers/cucumber_namer"
-require "#{__DIR__}/approvers/file_approver"
-require "#{__DIR__}/writers/text_writer"
-require "#{__DIR__}/writers/html_writer"
-require "#{__DIR__}/writers/xml_writer"
-require "#{__DIR__}/reporters/quiet_reporter"
-require "#{__DIR__}/reporters/cleanup_reporter"
-require "#{__DIR__}/reporters/text_mate_reporter"
-require "#{__DIR__}/reporters/diff_reporter"
-require "#{__DIR__}/reporters/vimdiff_reporter"
-require "#{__DIR__}/reporters/opendiff_reporter"
-require "#{__DIR__}/reporters/file_launcher_reporter"
-require "#{__DIR__}/reporters/rspec_reporter"
-require "#{__DIR__}/reporters/tortoisediff_reporter"
+
+require "approval_tests/utils"
+require "approval_tests/namers/rspec_namer"
+require "approval_tests/namers/cucumber_namer"
+require "approval_tests/approvers/file_approver"
+
+require "approval_tests/writers"
+require "approval_tests/reporters"
 
 include ApprovalTests::Approvers
 include ApprovalTests::Writers

@@ -1,0 +1,1 @@
+Dir[File.dirname(__FILE__) + '/writers/*.rb'].each {|writer| require writer}
