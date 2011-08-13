@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'spec'
+require 'rspec'
 
 __DIR__ = File.join(File.dirname(__FILE__))
 $LOAD_PATH.unshift __DIR__ unless
