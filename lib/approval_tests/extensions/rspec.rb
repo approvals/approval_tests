@@ -1,5 +1,3 @@
-require "#{File.dirname(__FILE__)}/../approvals"
-
 module ApprovalTests
   module Extensions
     module RSpec
@@ -39,7 +37,7 @@ module ApprovalTests
 end
 
 begin
-  Spec::Runner.configure do |config|  
+  RSpec.configure do |config|  
     config.before(:each) do
       Approvals.namer = RSpecNamer.new()
       extra_description = ""
@@ -49,5 +47,5 @@ begin
     end
     config.extend(ApprovalTests::Extensions::RSpec)
   end
-rescue #LoadError 
+rescue LoadError 
 end

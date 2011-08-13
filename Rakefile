@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'spec/rake/spectask'
 
-Spec::Rake::SpecTask.new('specs') do |t|
+RSpec::Rake::RSpecTask.new('specs') do |t|
   t.spec_opts = ["--format", "specdoc", "--colour"]
   t.spec_files = Dir['spec/**/*_spec.rb'].sort
 end
