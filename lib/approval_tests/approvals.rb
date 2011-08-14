@@ -1,8 +1,7 @@
 require 'fileutils'
 
 require "approval_tests/utils"
-require "approval_tests/namers/rspec_namer"
-require "approval_tests/namers/cucumber_namer"
+require "approval_tests/namers"
 require "approval_tests/approvers/file_approver"
 
 require "approval_tests/writers"
@@ -20,15 +19,19 @@ module ApprovalTests
   class Approvals
     class << self
       def approve_list(label, list)
-        
-        i = -1;
-        format = list.map do |m| 
-          i = i+1
-          "#{label}[#{i}] = #{m} \r"
+        format = if list.empty?
+          "#{label}.count = 0"
+        else
+          index = -1
+          list.reduce("") do |format, list_element| 
+            index += 1
+            format + "#{label}[#{index}] = #{list_element} \n"
+          end
         end
-        format = "#{label}.count = 0" if list.empty?
-        approve(format.to_s)
+        
+        approve(format)
       end
+      
       def approve_map(map)
         out = "";
         map.keys.sort { |a,b| a.to_s <=> b.to_s }.each do |key|
@@ -36,6 +39,7 @@ module ApprovalTests
         end
         approve(out)
       end
+      
       def approve(data)
         approve_with_writer(TextWriter.new(data))
       end
