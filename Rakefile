@@ -1,10 +1,14 @@
 require 'rubygems'
-require 'spec/rake/spectask'
+require 'rspec/core/rake_task'
+require 'cucumber/rake/task'
 
-RSpec::Rake::RSpecTask.new('specs') do |t|
-  t.spec_opts = ["--format", "specdoc", "--colour"]
-  t.spec_files = Dir['spec/**/*_spec.rb'].sort
+task :default => ["specs", "features"]
+
+RSpec::Core::RakeTask.new('specs') do |t|
+  t.rspec_opts = ["--format", "documentation", "--colour"]
 end
+
+Cucumber::Rake::Task.new('features')
 
 begin
   require 'jeweler'
