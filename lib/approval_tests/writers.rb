@@ -1,1 +1,1 @@
-Dir[File.dirname(__FILE__) + '/writers/*.rb'].each {|writer| require writer}
+Dir[File.dirname(__FILE__) + '/writers/*_writer.rb'].each {|writer| require writer}

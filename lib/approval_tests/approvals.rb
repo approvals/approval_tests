@@ -1,23 +1,10 @@
 require 'fileutils'
 
-require "approval_tests/utils"
-require "approval_tests/namers"
-require "approval_tests/approvers/file_approver"
-
-require "approval_tests/writers"
-require "approval_tests/reporters"
-
-include ApprovalTests::Approvers
-include ApprovalTests::Writers
-include ApprovalTests::Reporters
-
-module ApprovalTests
-  class ApprovalError < Exception
-    attr_accessor :received_filename
-    attr_accessor :approved_filename
-  end
+module ApprovalTests  
   class Approvals
     class << self
+      attr_accessor :namer
+      
       def approve_list(label, list)
         format = if list.empty?
           "#{label}.count = 0"
@@ -68,14 +55,6 @@ module ApprovalTests
           end
       end
       
-      def namer=(namer)
-        @namer = namer
-      end
-      
-      def namer
-        @namer
-      end
-    
       def get_default_reporter()
         @reporters ||= []
         unless @reporters.empty?
@@ -94,7 +73,7 @@ module ApprovalTests
 
       def reporter(reporter)
         prepare_reporters
-        @reporters.push(reporter);
+        @reporters.push(reporter)
       end
 
       def prepare_reporters
@@ -105,12 +84,12 @@ module ApprovalTests
 
       def single_use_reporter(reporter)
         prepare_reporters
-        @reporters.push(reporter);
+        @reporters.push(reporter)
         @single_use = true
       end
 
       def unregister_reporter(reporter)
-        @reporters.remove(reporter);
+        @reporters.remove(reporter)
       end
 
       def unregister_last_reporter()

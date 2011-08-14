@@ -8,7 +8,7 @@ module ApprovalTests
   			@namer = namer
   		end
   		
-      def approve()
+      def approve
   			basename = "#{@namer.source_file_path}/#{@namer.approval_name}"
   			@approved = @writer.get_approval_filename(basename)
   			@received = @writer.get_received_filename(basename)
@@ -31,7 +31,7 @@ module ApprovalTests
   			return true
   		end
   		
-      def fail()
+      def fail
         raise @failure
       end
       		
@@ -39,7 +39,7 @@ module ApprovalTests
         reporter.report(@approved, @received);
       end
       		
-      def clean_up_after_success()
+      def clean_up_after_success
         File.delete(@received)
       end
     end

@@ -6,4 +6,4 @@ $LOAD_PATH.unshift __DIR__ unless
   $LOAD_PATH.include?(File.expand_path(__DIR__))
 
 require 'approval_tests'
-require 'approval_tests/plugin'
+require 'approval_tests/extensions/cucumber'

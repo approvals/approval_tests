@@ -1,1 +1,1 @@
-Dir[File.dirname(__FILE__) + '/namers/*.rb'].each {|namer| require namer}
+Dir[File.dirname(__FILE__) + '/namers/*_namer.rb'].each {|namer| require namer}

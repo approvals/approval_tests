@@ -3,7 +3,6 @@ module ApprovalTests
     module RSpec
       def approve(thing=nil, options={}, backtrace=nil, &implementation)
         if block_given?
-
           approve_description = "#{thing}" 
         else
           approve_description = nil
