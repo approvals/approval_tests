@@ -1,8 +1,9 @@
-require File.join(File.dirname(__FILE__) + '/../../spec/spec_helper')
-
-World do
-  include ApprovalTests
-end
-
 require 'cucumber/formatter/unicode'
-require 'spec/expectations'
+
+__DIR__ = File.join(File.dirname(__FILE__) + '/../../lib')
+$LOAD_PATH.unshift __DIR__ unless
+  $LOAD_PATH.include?(__DIR__) ||
+  $LOAD_PATH.include?(File.expand_path(__DIR__))
+
+require 'approval_tests'
+require 'approval_tests/extensions/cucumber'

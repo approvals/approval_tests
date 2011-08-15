@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), "spec_helper")
+require "spec_helper"
 
 shared_examples_for "Shared Behaviors" do
   it "should approve shared behaviors" do
@@ -53,11 +53,11 @@ describe "Approvals" do
 
   describe "DiffReporter" do
     it "should launch" do
-      base = "approval_tests/spec/"
+      base = "approval_tests/spec/approval_tests"
       #   DiffReporter.instance.report("approval_tests/spec/a.txt", "approval_tests/spec/b.txt")    
     end 
     it "should create and launch" do
-      base = "approval_tests/spec/"
+      base = "approval_tests/spec/approval_tests"
       File.delete("#{base}c.txt") if File.exists?("#{base}c.txt")
       #     DiffReporter.instance.report("#{base}c.txt", "#{base}a.txt")    
     end

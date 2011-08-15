@@ -1,5 +1,3 @@
-require "#{File.dirname(__FILE__)}/../approvals"
-
 module ApprovalTests
   module Extensions
     module RSpec
@@ -38,13 +36,14 @@ module ApprovalTests
   end
 end
 
-Spec::Runner.configure do |config|  
-  config.before(:each) do
-    Approvals.namer = RSpecNamer.new()
-    extra_description = ""
-    extra_description = "_#{self.description}" if !self.description.empty?
-    Approvals.namer.approval_name = "#{self.class.description}#{extra_description}".gsub("/", "__FORWARD_SLASH__");
-    Approvals.namer.source_file_path = File.dirname(self.class.location)
+begin
+  RSpec.configure do |config|  
+    config.before(:each) do
+      Approvals.namer = RSpecNamer.new()
+      Approvals.namer.approval_name = self.example.metadata[:full_description].gsub("/", "__FORWARD_SLASH__");
+      Approvals.namer.source_file_path = File.dirname(self.class.metadata[:example_group].location)
+    end
+    config.extend(ApprovalTests::Extensions::RSpec)
   end
-  config.extend(ApprovalTests::Extensions::RSpec)
+rescue NoMethodError 
 end
