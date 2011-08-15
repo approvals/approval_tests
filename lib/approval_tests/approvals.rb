@@ -1,42 +1,24 @@
 require 'fileutils'
-__DIR__ = File.dirname(__FILE__)
-require "#{__DIR__}/utils"
-require "#{__DIR__}/namers/rspec_namer"
-require "#{__DIR__}/namers/cucumber_namer"
-require "#{__DIR__}/approvers/file_approver"
-require "#{__DIR__}/writers/text_writer"
-require "#{__DIR__}/writers/html_writer"
-require "#{__DIR__}/writers/xml_writer"
-require "#{__DIR__}/reporters/quiet_reporter"
-require "#{__DIR__}/reporters/text_mate_reporter"
-require "#{__DIR__}/reporters/diff_reporter"
-require "#{__DIR__}/reporters/vimdiff_reporter"
-require "#{__DIR__}/reporters/opendiff_reporter"
-require "#{__DIR__}/reporters/file_launcher_reporter"
-require "#{__DIR__}/reporters/rspec_reporter"
-require "#{__DIR__}/reporters/tortoisediff_reporter"
 
-include ApprovalTests::Approvers
-include ApprovalTests::Writers
-include ApprovalTests::Reporters
-
-module ApprovalTests
-  class ApprovalError < Exception
-    attr_accessor :received_filename
-    attr_accessor :approved_filename
-  end
+module ApprovalTests  
   class Approvals
     class << self
+      attr_accessor :namer
+      
       def approve_list(label, list)
-        
-        i = -1;
-        format = list.map do |m| 
-          i = i+1
-          "#{label}[#{i}] = #{m} \r"
+        format = if list.empty?
+          "#{label}.count = 0"
+        else
+          index = -1
+          list.reduce("") do |format, list_element| 
+            index += 1
+            format + "#{label}[#{index}] = #{list_element} \n"
+          end
         end
-        format = "#{label}.count = 0" if list.empty?
-        approve(format.to_s)
+        
+        approve(format)
       end
+      
       def approve_map(map)
         out = "";
         map.keys.sort { |a,b| a.to_s <=> b.to_s }.each do |key|
@@ -44,6 +26,7 @@ module ApprovalTests
         end
         approve(out)
       end
+      
       def approve(data)
         approve_with_writer(TextWriter.new(data))
       end
@@ -72,14 +55,6 @@ module ApprovalTests
           end
       end
       
-      def namer=(namer)
-        @namer = namer
-      end
-      
-      def namer
-        @namer
-      end
-    
       def get_default_reporter()
         @reporters ||= []
         unless @reporters.empty?
@@ -98,7 +73,7 @@ module ApprovalTests
 
       def reporter(reporter)
         prepare_reporters
-        @reporters.push(reporter);
+        @reporters.push(reporter)
       end
 
       def prepare_reporters
@@ -109,12 +84,12 @@ module ApprovalTests
 
       def single_use_reporter(reporter)
         prepare_reporters
-        @reporters.push(reporter);
+        @reporters.push(reporter)
         @single_use = true
       end
 
       def unregister_reporter(reporter)
-        @reporters.remove(reporter);
+        @reporters.remove(reporter)
       end
 
       def unregister_last_reporter()

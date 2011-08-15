@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), "spec_helper")
+require "spec_helper"
 
 describe '#program_exists' do
   it "should recognize a command that exists" do

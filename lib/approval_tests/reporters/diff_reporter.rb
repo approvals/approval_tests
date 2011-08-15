@@ -13,7 +13,7 @@ module ApprovalTests
         launch(approved, received)
       end
       
-      def approved_when_reported()
+      def approved_when_reported
         false 
       end
 

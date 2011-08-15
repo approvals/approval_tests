@@ -1,1 +1,0 @@
-name[0] = tom name[1] = dick name[2] = harry 
