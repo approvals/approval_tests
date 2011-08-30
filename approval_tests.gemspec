@@ -48,7 +48,7 @@ Gem::Specification.new do |s|
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/approvaltests/approval_tests}
+  s.homepage = %q{http://github.com/approvals/approval_tests}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{approvaltests}
